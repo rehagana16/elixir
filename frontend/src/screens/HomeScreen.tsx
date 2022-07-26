@@ -1,8 +1,12 @@
 import React from 'react'
 
-const HomeScreen = () => {
+interface Props {
+    firstName: string
+}
+
+const HomeScreen = ({ firstName }: Props) => {
     return (
-        <div className='text-3xl'>Welcome to Home Page!</div>
+        firstName ? <h1 className='text-3xl'>Welcome {firstName}!</h1> : <h1 className='text-3xl'>Welcome to the home page</h1>
     )
 }
 

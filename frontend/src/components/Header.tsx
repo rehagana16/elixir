@@ -1,6 +1,19 @@
-import React from 'react'
+import React, { SyntheticEvent } from 'react'
 
-const Header = () => {
+interface Props {
+    firstName: string,
+    setFirstName: (firstName: string) => void
+}
+
+const Header = ({ firstName, setFirstName }: Props) => {
+    const logoutHandler = async (e: SyntheticEvent) => {
+        e.preventDefault();
+        await fetch('http://localhost:8080/api/logout', {
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include'
+        })
+        setFirstName('')
+    }
     return (
         <div>
             <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
@@ -9,17 +22,25 @@ const Header = () => {
                     <a href="/" className="font-semibold text-xl tracking-tight">Elixir</a>
                 </div>
                 <div className="w-full block flex-shrink-0 lg:flex lg:items-center lg:w-auto">
-                    <div className="text-sm lg:flex-grow">
-                        <a href="/login" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-                            Login
-                        </a>
-                        <a href="/register" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
-                            Register
-                        </a>
-                        <a href="/register/freelance" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
-                            Register as freelancer
-                        </a>
-                    </div>
+                    {firstName ? (
+                        <div className="text-sm lg:flex-grow">
+                            <a onClick={logoutHandler} className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+                                Logout
+                            </a>
+                        </div>
+                    ) : (
+                        <div className="text-sm lg:flex-grow">
+                            <a href="/login" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+                                Login
+                            </a>
+                            <a href="/register" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+                                Register
+                            </a>
+                            <a href="/register/freelance" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white">
+                                Register as freelancer
+                            </a>
+                        </div>
+                    )}
                 </div>
             </nav>
         </div>
