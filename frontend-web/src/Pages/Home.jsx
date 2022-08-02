@@ -4,13 +4,12 @@ import Hero from "../Components/Hero";
 import Rant from "../Components/Rant";
 import Catalogue from "../Components/Catalogue";
 
-function Home() {
+function Home(props) {
     return (
         <div>
             <div className="flex flex-col h-screen">
-                <Navbar />
                 <Hero />
-                <Rant />
+                <Rant firstName={props.firstName} />
             </div>
             <Catalogue />
         </div >
