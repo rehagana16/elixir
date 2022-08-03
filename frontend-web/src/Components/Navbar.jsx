@@ -30,17 +30,17 @@ function Navbar() {
             <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
                 <div class="text-sm lg:flex-grow">
                 </div>
-                {!user ? (<div>
+                {!user ? (<div className="font-semibold">
                     <a href="login" class="block mt-4 lg:inline-block lg:mt-0 text-black mr-4">
                         Login
                     </a>
-                    <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-black mr-4">
+                    <a href="registration" class="block mt-4 lg:inline-block lg:mt-0 text-black mr-4">
                         Register
                     </a>
                     <a href="#responsive-header" class="block mt-4 lg:inline-block lg:mt-0 text-black">
                         Register as freelance
                     </a>
-                </div>) : (<div>
+                </div>) : (<div className="font-semibold">
                     <a onClick={logoutHandler} class="block mt-4 lg:inline-block lg:mt-0 text-black mr-4">
                         Logout
                     </a>
